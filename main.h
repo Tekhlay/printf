@@ -7,5 +7,6 @@
 #include <unistd.h
 
 int _printf(const char *format, ...);
+int printf_dec(var_list args);
 
 #endif
