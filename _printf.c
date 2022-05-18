@@ -1,71 +1,51 @@
 #include "main.h"
+
 /**
- * _printf - is a function that formats and prints data
- * @format: format of data
- * Return: number of characters printed
+ * _printf - formatted output conversion and print data.
+ * @format: input string.
+ *
+ * Return: number of chars printed.
  */
 int _printf(const char *format, ...)
 {
-	const char *p;
-	unsigned int i;
-	int j;
-	int k = 0;
-	va_list conspec;
-	char *s;
+	unsigned int i = 0, len = 0, ibuf = 0;
+	va_list arguments;
+	int (*function)(va_list, char *, unsigned int);
+	char *buffer;
 
-	if (!format)
-	{
+	va_start(arguments, format), buffer = malloc(sizeof(char) * 1024);
+	if (!format || !buffer || (format[i] == '%' && !format[i + 1]))
 		return (-1);
-	}
-	va_start(conspec, format);
-	for (p = format; *p != '\0'; p++)
+	if (!format[i])
+		return (0);
+	for (i = 0; format && format[i]; i++)
 	{
-		if (*p != '%')
+		if (format[i] == '%')
 		{
-			_putchar(*p, &k);
-			continue;
+			if (format[i + 1] == '\0')
+			{	print_buf(buffer, ibuf), free(buffer), va_end(arguments);
+				return (-1);
+			}
+			else
+			{	function = get_print_func(format, i + 1);
+				if (function == NULL)
+				{
+					if (format[i + 1] == ' ' && !format[i + 2])
+						return (-1);
+					handl_buf(buffer, format[i], ibuf), len++, i--;
+				}
+				else
+				{
+					len += function(arguments, buffer, ibuf);
+					i += ev_print_func(format, i + 1);
+				}
+			} i++;
 		}
-		p++;
-		switch (*p)
-		{
-		case 'c':
-			i = va_arg(conspec, int);
-			_putchar(i, &k);
-			break;
-		case 's':
-			s = va_arg(conspec, char *);
-			_puts(s, &k);
-			break;
-		case '%':
-			_putchar('%', &k);
-			break;
-		case 'd':
-			j = va_arg(conspec, int);
-			_print_number(j, &k);
-			break;
-		case 'i':
-			j = va_arg(conspec, int);
-			_print_number(j, &k);
-			break;
-		case 'r':
-			s = va_arg(conspec, char *);
-			_rev_string(s, &k);
-			break;
-		case 'b':
-			i = va_arg(conspec, int);
-			_print_binary(i, &k);
-			break;
-		case 'R':
-			s = va_arg(conspec, char *);
-			_rot13(s, &k);
-			break;
-		case '\0':
-			return (-1);
-		default:
-			_putchar('%', &k);
-			_putchar(*p, &k);
-		}
+		else
+			handl_buf(buffer, format[i], ibuf), len++;
+		for (ibuf = len; ibuf > 1024; ibuf -= 1024)
+			;
 	}
-	va_end(conspec);
-	return (k);
+	print_buf(buffer, ibuf), free(buffer), va_end(arguments);
+	return (len);
 }
