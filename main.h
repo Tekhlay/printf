@@ -1,15 +1,29 @@
 #ifndef MAIN_H
 #define MAIN_H
 #include <stdarg.h>
-/*Structs*/
-/*Typedefs*/
-/*Prototypes*/
-int _putchar(char c, int *k);
-void _puts(char *str, int *k);
+
+/**
+  * struct specifiers - Struct specifiers
+  * @specifier: The conversion specifier
+  * @f: The function pointer
+  */
+typedef struct specifiers
+{
+	char *specifier;
+	int (*f)(va_list args);
+} spc_dt;
+
+int _write(char c);
 int _printf(const char *format, ...);
-void _print_number(int n, int *k);
-void _rev_string(char *s, int *k);
-int _strlen(char *s);
-void _print_binary(int n, int *k);
-void _rot13(char *s, int *k);
+int _print_a_char(va_list args);
+int _print_a_string(va_list args);
+int _print_format(const char *format, va_list args);
+int _print_spec(char format, va_list args);
+int _print_invalid_spec(char prev_format, char format, int count);
+int _print_a_integer(va_list args);
+void _recursion_integer(int a);
+int _print_int_binary(va_list args);
+void _recursion_int_binary(int a);
+int _validate_char(char _type);
+
 #endif
