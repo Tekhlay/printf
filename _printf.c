@@ -1,32 +1,24 @@
-#include <main.h>
-#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "main.h"
 
 /**
- * main - Entry point
+ * _printf - function my printf
+ * @format: string whit format to print
  *
- * Return: Always 0
+ * Return: number of chars that print
  */
- 
 int _printf(const char *format, ...)
 {
-    va_list args;
-    va_start(args, fmt);
- 
-    while (*fmt != '\0') {
-        if (*fmt == 'd') {
-            int i = va_arg(args, int);
-            printf("%d\n", i);
-        } else if (*fmt == 'c') {
-            // A 'char' variable will be promoted to 'int'
-            // A character literal in C is already 'int' by itself
-            int c = va_arg(args, int);
-            printf("%c\n", c);
-        } else if (*fmt == 'f') {
-            double d = va_arg(args, double);
-            printf("%f\n", d);
-        }
-        ++fmt;
-    }
- 
-    va_end(args);
+	va_list args;
+	int length = 0;
+
+	if (format == NULL)
+		return (-1);
+
+	va_start(args, format);
+
+	length = _print_format(format, args);
+	va_end(args);
+	return (length);
 }
