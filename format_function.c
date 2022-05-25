@@ -20,10 +20,12 @@ return(write(1, &c, 1));
  *return:len
  */
 int _strlen(char* str)
-int len = 0;
-while(str[len] != '\0')
+int len, i;
+i = 0
+while(str[i] != '\0')
 {
-len++;
+len += i;
+i++;
 }
 return (len);
 }
@@ -33,6 +35,7 @@ return (len);
  *@str: string to be printed which is given as char pointer
  *return: nothing
  */
+
 void _puts(char* str)
 {
 int i;
@@ -49,6 +52,7 @@ _putchar(str[i]);
  *@base: desired base
  *return: return char pointer to converted num
  */
+
 int base_converter(char digit_allowed[], unsigned int n, int base)
 {
 char *p;
