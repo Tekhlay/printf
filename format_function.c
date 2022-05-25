@@ -10,7 +10,7 @@
  */
 int _putchar(char c)
 {
-return(write(1, &c, 1))
+return(write(1, &c, 1));
 }
 
 /**
@@ -21,10 +21,12 @@ return(write(1, &c, 1))
  */
 int _strlen(char* str)
 int len = 0;
-while(*str++)
+while(str[len] != '\0')
 {
 len++;
-} 
+}
+return (len);
+}
 
 /**
  *_puts - print string on stdout
@@ -47,7 +49,7 @@ _putchar(str[i]);
  *@base: desired base
  *return: return char pointer to converted num
  */
-int base_converter(digit_allowed[], unsigned int n, int base)
+int base_converter(char digit_allowed[], unsigned int n, int base)
 {
 char *p;
 static char buffer[128];
