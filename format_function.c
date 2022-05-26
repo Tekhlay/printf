@@ -19,13 +19,11 @@ return(write(1, &c, 1));
  *@len: length of string
  *return:len
  */
-int _strlen(char* str)
-int len, i;
-i = 0
-while(str[i] != '\0')
+int _strlen(char *s)
+int len = 0
+while(*s++)
 {
-len += i;
-i++;
+len++
 }
 return (len);
 }
@@ -36,12 +34,12 @@ return (len);
  *return: nothing
  */
 
-void _puts(char* str)
+void _puts(char *s)
 {
 int i;
-for (i = 0, i < _strlen(str), i++)
+for (i = 0, i < _strlen(s), i++)
 {
-_putchar(str[i]);
+_putchar(s[i]);
 }
 }
 
@@ -53,7 +51,7 @@ _putchar(str[i]);
  *return: return char pointer to converted num
  */
 
-int base_converter(char digit_allowed[], unsigned int n, int base)
+int *base_converter(char digit_allowed[], unsigned int n, int base)
 {
 char *p;
 static char buffer[128];
