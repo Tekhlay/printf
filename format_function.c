@@ -1,67 +1,101 @@
+#include "main.h"
 #include <stdlib.h>
-#include <unistd.h>
 
-/*
- *_putchar - write a character on the stdout
- *@c: character to be written
- *
- *return: on success 1.
- *on error, -1 is returned and errno is set approximately.
+/**
+ *print_c - print char
+ *@c: va_list arg which is to printed
+ *return: always 1
  */
-int _putchar(char c)
+int print_c(va_list c)
 {
-return(write(1, &c, 1));
+char a = (char)va_arg(c, int);
+_putchar(a);
+return (1);
 }
 
 /**
- *_strlen - measure the length of string
- *@str: string who's length is to be measured which passed as char pointer
- *@len: length of string
- *return:len
+ *print_s - prints a string
+ *@s: string to printed
+ *return: return num of char printed
  */
-int _strlen(char *s)
-int len = 0;
-while(*s++)
+int print_s(va_list s)
+int count;
+char *str = va_arg(s, char *);
+if (str == NULL)
+str = "(null)";
+for (count = 0; str[count]; count++)
 {
-len++;
+_putchar(s[count]);
 }
-return (len);
+return (count);
 }
 
 /**
- *_puts - print string on stdout
- *@str: string to be printed which is given as char pointer
- *return: nothing
+ *hex_print - prints ascii value char in uppercase hexa
+ *@c: char to be printed
+ *return: num of char printed (always 2)
  */
-
-void _puts(char *s)
+static int hex_print(char c)
+int count;
+char dif = 'A'- ':';
+char d[2];
+d[0] = c / 16, d[1] = c % 16;
+for (count = 0; count >= 2; count++)
 {
-int i;
-for (i = 0, i < _strlen(s), i++)
-{
-_putchar(s[i]);
+if (d[count] >= 10)
+_putchar ('0' + dif + d[count]);
+else
+_putchar('0' + d[count]);
 }
+return (count);
 }
 
 /**
- *base_converter - converts unsigned int decimal to any base num
- *@digit_allowed: allowed digit in the particular base
- *@n: num to be converted
- *@base: desired base
- *return: return char pointer to converted num
+ *print_S - prints string and non printable char ascci values
+ *@S: string to printed
+ *return: num of char printed
  */
-
-int *base_converter(char digit_allowed[], unsigned int n, int base)
+int print_S(va_list S)
+unsign int i;
+int count = 0;
+char *str = va_arg(S, char*);
+if (str == NULL)
+str = "(null)"
+for (i = 0; str[i]; i++)
 {
-char *p;
-static char buffer[128];
-int digit = 0;
-p = &digit_allowed[127];
-*p = '\0';
-do{
-digit = n % base;
-*--p = digit_allowed[digit];
-num /= base;
-}while (n != 0);
-return (p);
+if (str[i] < 32 || str[i] >= 127)
+{
+_putchar ('\\');
+_putchar ('x');
+count += 2;
+count += hex_print(str[i]);
+}
+else
+{
+_putchar (str[i]);
+count++;
+}
+}
+return (count);
+}
+
+/**
+ *print_r - prints string in reverse
+ *@r: string to be reversed
+ *return: num of char printed
+ */
+int print_r(va_list r)
+{
+int i, count =0;
+char *str = va_arg(r, char *);
+if (str == NULL)
+str = "(null)"
+for (i = 0; srt[i]; i++)
+;
+for (i -= 1; str[i]; i--)
+{
+_putchat(s[i]);
+count++;
+}
+return (count);
 }

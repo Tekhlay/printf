@@ -1,92 +1,77 @@
 #include "main.h"
+#include <stdlib.h>
 
 /**
- *_printf - printf
- *@format: constant char pointer
- *return: num of printed char
+ * check_spacifier - check the perecence of valid format spacifiers
+ * @format: list of valid spacifier
+ * return: pointer to valid format function
+ */
+static int (*check_spacifier(const char *format)(va_list))
+{
+unsigned int i;
+print_t p[] = {
+	{"c", print_c},
+	{"s", print_s},
+	{"i", print_i},
+	{"d", print_d},
+	{"u", print_u},
+	{"b", print_b},
+	{"o", print_o},
+	{"x", print_x},
+	{"X", print_X},
+	{"S", print_S},
+	{"r", print_r},
+	{"R", print_R},
+	{NULL, NULL}
+};
+for (i = 0; p[i].a != NULL; i++)
+{
+if (*(p[i].a) == *format)
+{
+break;
+}
+}
+return (p[i].f);
+}
+
+/**
+ * _printf - print anything
+ * @format: list of arg types passed to function
+ * return: num of char printed
  */
 int _printf(const char *format, ...)
 {
-const char *s;
-int count = 0;
-va_list arg;
-if(!format)
+unsigned int i = 0, count = 0;
+va_list valist;
+int (*f)(va_list);
+if (format == NULL)
 return (-1);
-va_start(arg, format);
-s = format;
-count = flag_checker(arg, s);
-va_end(arg);
-return (count);
+va_start(valist, format);
+while (format[i])
+{
+for (; format[i] != '%' && format[i]; i++)
+{
+_putchar (format[i]);
+count++;
 }
-
-/**
- *format_looper - loop input to spacific format
- *@arg: va_list arg
- *@s: pointer to be formated
- *return: num of char printed
- */
-int frmat_looper(va_list arg, const char *s)
+if (!format[i])
+return (count);
+f = check_spacifier(&format[i + 1]);
+if (f != NULL)
 {
-int i = 0 flag = 0, f_count = 0, count = 0, p_checker =0;
-while(i < _strlen((char *)s) && *s != '\0')
-char a = s [i];
-if(a == '%')
-{
-i++, flag++;
-}else
-{
-f_count = fun_caller(a, arg);
-if(f_count >= 0 && f_count != -1)
-{
+count += f(valist);
+i += 2;
+continue;
+}
+if (!format[i + 1])
+return (-1);
+_putchar(format[i]);
+count++;
+if (format[i + 1] == '%')
+i += 2;
+else
 i++;
-a = s[i];
-if(a == '%')
-flag--;
-count = count + f_count;
-}else if(f_count == -1 && a != '\n')
-{
-count += _putchar('%');
 }
-}
-}
-p_checker = check_per(&flag, a);
-count += p_checker;
-if(p_checker == 0 && a != '\0' && a != '%')
-count += _putchar('%'), i++;
-p_checker = 0;
-}
-return (count);
-}
-
-/**
- *check_per - call the fun_caller
- *@flag: value by reference
- *@a: char
- *return: 1 if % printed
- */
-int check_per(int *flag, char a)
-{
-int t_flag;
-int count = 0;
-t_flag = *flag;
-if(p_flag == 2 && a == '%')
-{
-_putchar('%');
-t_flag = 0;
-count = 1;
-}
-return (count);
-}
-
-/**
- *caller_caller - call fun_caller
- *@a: char
- *@arg: va_list arg
- *return: num of char printed
- */
-int caller_caller(char a, va_list arg)
-{
-int count = 0;
-count = fun_caller(a, arg);
+va_end(valist);
 return (count);
 }

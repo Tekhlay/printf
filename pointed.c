@@ -1,97 +1,70 @@
 #include "main.h"
-#include <stdarg.h>
 
 /**
- *print_base - points to base_converter
- *@arg: va_list arg
- *return: address pointer
+ *print_i - prints int nums
+ *@i: int to printed
+ *return: num of ints printed
  */
-int print_base(va_list arg)
+int print_i(va_list i)
 {
-unsigned long int v1, v2;
-char c[100];
-int x, y, count;
-v1 = (unsigned long int)va_arg(arg, void*);
-v2 = v1;
-count = 1;
-x = 0
-if (!v1)
+int a[10];
+int n, m, i, sum, count = 0;
+n = va_arg(i, int);
+m = 1000000000;
+a[0] = n / m
+for (i = 1; i <= 10; i++)
 {
-_putchar("(nil)");
-return (5);
+m /= 10;
+a[i] = (n / m) % 10;
 }
-while (v2)
+if (n < 0)
 {
-v2 /= 16;
+_putchar('-');
+count++;
+for (i = 0; i < 9; i++)
+a[i] *= -1;
+}
+for (i = 0; sum = 0; i < 10; i++)
+sum += s[i];
+if (sum != 0 || j == 9)
+{
+_putchar('0' + s[j]);
 count++;
 }
-c[count + 1] = '\0';
-while (v1 > 0)
-{
-y = (v1 % 16);
-if (y >= 0 && n <= 9)
-c[count] = ((char)(y + '0'));
-else
-c[count] = ((char)(y + 'w'));
-count--;
-v1 /= 16;
 }
-c[0] = '0';
-c[1] = 'x';
-while (c[x] != '\0')
-{
-_putchar(c[x]);
-x++;
+return (count);
 }
-return (i);
-}
+
 /**
- *print_str - print string using rot13
- *@arg: va_list arg
- *return: length of the string
+ *print_d - prints decimal num
+ *@d: num to printed
+ *return: num of char and digits printed
  */
-int print_str(va_list arg)
+int print_d(va_list d)
+int a[10];
+int n, m, i, sum, count = 0;
+n = va_arg(i, int);
+m = 1000000000;
+a[0] = n / m
+for (i = 1; i <= 10; i++)
 {
-register short i, j;
-char rot13[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-char ROT13[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
-char *s = va_arg(arg, char *);
-if (!s)
-{
-return (-1);
+m /= 10;
+a[i] = (n / m) % 10;
 }
-for (j =0; s[j]; j++)
+if (n < 0)
 {
-if (s[j] < 'A' || (s[j] > 'Z' && s[j] < 'a') || s[j] > 'z')
-_putchar(s[j]);
-else
+_putchar('-');
+count++;
+for (i = 0; i < 9; i++)
+a[i] *= -1;
+}
+for (i = 0; sum = 0; i < 10; i++)
+sum += s[i];
+if (sum != 0 || j == 9)
 {
-for (i = 0; i <= 52; i++)
-if (s[j] == rot13[i])
-_putchar(ROT13[i]);
+_putchar('0' + s[j]);
+count++;
 }
 }
-return (j);
-}
-/**
- *print_rev - print string in reverse
- *@arg: va_list arg
- *return: length of str
- */
-int print_rev(va_list arg)
-{
-int i = 0;
-int j;
-char *s = va_arg(char *);
-if(!s)
-return (-1);
-while(s[i])
-{
-i++;
-}
-for (j = i - i; j >= 0; j--)
-{
-_put(s[j]);
-}
-return (i);
+return (count);
 }

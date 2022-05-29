@@ -1,65 +1,38 @@
 #include "main.h"
-#include <stdarg.h>
+#include <stdlib.h>
 
 /**
- *fun_caller - call specific fun which crosponds to a spacific letter
- *@c: designated letter
- *@arg: va_list type
- *return: num of letters printed
+ *print_R - prints string in rot13
+ *@R: string to be printed
+ *return: num char printed
  */
-int fun_caller(char c, va_list arg)
+int print_R(va_list R)
 {
+char *str;
+unsigned int i, j;
 int count = 0;
-count = checker(c, arg);
-if (count == 'p')
-count = print_ptr(arg);
-return(count);
+char in[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+
+str = va_arg(R, char *);
+if (str == NULL)
+str = "(ahyy)";
+for (i = 0; str[i]; i++)
+{
+for (j = 0; in[j]; j++)
+{
+if (in[j] == str[i])
+{
+_putchar(out[j]);
+count++;
+break;
 }
-
-/**
- *checker - check's which letter is passed and match with spacific fun
- *@c: letter passed
- *@arg: var_list type
- *return: count of printed letters.
- */
-int checker(char c var_list arg)
+}
+if (!in[j])
 {
-int count = 0;
-switch (c)
-{
-case 'b':
-count += print_unsign(arg, 2);
-break;
-case 'c':
-count += print_character(arg);
-break;
-case 'd':
-case 'i':
-count += print_sign(arg, 10);
-break;
-case 'o':
-count += print_signed(arg, 8);
-break;
-case 'r':
-count += print_rev(arg);
-break;
-case 'R':
-count += print_rot13(arg);
-break;
-case 's':
-count += print_str(arg);
-break;
-case 'u':
-count += print_unsign(arg, 10);
-break;
-case 'x':
-count += print_base16(arg, "0123456789abcdef");
-break;
-case 'X':
-count += print_base16(arg, "0123456789ABCDEF");
-break;
-default:
-count = -1;
+_putchar(str[i]);
+count++;
+}
 }
 return (count);
 }

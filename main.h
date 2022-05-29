@@ -1,20 +1,30 @@
-#ifndef HEADER_MAIN
-#define HEADER_MAIN
+#ifndef MAIN_H
+#define MAIN_H
 #include <stdarg.h>
+/**
+ *kprint - struct for printing diferent formats
+ *@a: struct mem reperecenting date types
+ *@f: function used for printing the format
+ */
+typedef struct kprint
+{
+char *a;
+int (*f)(va_list);
+}print_t;
+
 int _putchar(char c);
-void _puts(char *s);
-int _strlen(char *s);
-int _printf(char *format, ...);
-char *base_converter(char rep[], unsigned int num, int base);
-int fun_caller(char c, va_list arg);
-int checker(char c, va_list arg);
-int print_char(va_list arg);
-int print_sign(va_list arg, int base);
-int print_unsign(va_list arg, int base);
-int print_str(va_list arg);
-int print_base(va_list arg);
-int print_rev(va_list arg);
-int caller_caller(char a, va_list arg);
-int check_per(int *flag, char a);
-int frmat_looper(va_list arg, const char *s);
+int _printf(const char *format, ...);
+int print_c(va_list c);
+int print_s(va_list s);
+int print_i(va_list i);
+int print_d(va_list d);
+int print_u(va_list u);
+int print_b(va_list b);
+int print_o(va_list o);
+int print_x(va_list x);
+int print_X(va_list X);
+int print_p(va_list p);
+int print_S(va_list S);
+int print_r(va_list r);
+int print_R(va_list R);
 #endif
