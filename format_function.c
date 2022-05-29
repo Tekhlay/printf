@@ -20,6 +20,7 @@ return (1);
  *return: return num of char printed
  */
 int print_s(va_list s)
+{
 int count;
 char *str = va_arg(s, char *);
 if (str == NULL)
