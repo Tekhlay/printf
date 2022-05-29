@@ -18,7 +18,7 @@ diff = 'A' - ':';
 else
 diff = 'a' - ':';
 a[0] = n / m;
-for (i = 1; 1 < 8; i++)
+for (i = 1; i < 8; i++)
 {
 m /= 16;
 a[i] = (n / m) % 16;
