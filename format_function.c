@@ -38,6 +38,7 @@ return (count);
  *return: num of char printed (always 2)
  */
 static int hex_print(char c)
+{
 int count;
 char dif = 'A'- ':';
 char d[2];
@@ -58,6 +59,7 @@ return (count);
  *return: num of char printed
  */
 int print_S(va_list S)
+{
 unsign int i;
 int count = 0;
 char *str = va_arg(S, char*);
