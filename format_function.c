@@ -25,7 +25,7 @@ if (str == NULL)
 str = "(null)";
 for (count = 0; str[count]; count++)
 {
-_putchar(s[count]);
+_putchar(str[count]);
 }
 return (count);
 }
