@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
+#include <stdarg.h>
 
 /**
  * check_spacifier - check the perecence of valid format spacifiers
