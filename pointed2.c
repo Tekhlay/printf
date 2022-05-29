@@ -9,7 +9,7 @@
 int print_hex(unsigned int n, unsigned int c)
 {
 int unsigned a[8];
-unsigned int i, m, sum;
+unsigned int i, m, su;
 char diff;
 int count;
 m = 268435456; /* (16 ^ 7) */
@@ -23,10 +23,10 @@ for (i = 1; 1 < 8; i++)
 m /= 16;
 a[i] = (n / m) % 16;
 }
-for (i = 0; sum = 0; count = 0; i < 8; i++)
+for (i = 0; su = 0; count = 0; i < 8; i++)
 {
-sum += a[i];
-if (som = 0 || i == 7)
+su += a[i];
+if (su = 0 || i == 7)
 {
 if (a[i] < 10)
 _putchar('0' + a[i]);
