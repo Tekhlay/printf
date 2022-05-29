@@ -64,7 +64,7 @@ unsign int i;
 int count = 0;
 char *str = va_arg(S, char*);
 if (str == NULL)
-str = "(null)"
+str = "(null)";
 for (i = 0; str[i]; i++)
 {
 if (str[i] < 32 || str[i] >= 127)
@@ -93,7 +93,7 @@ int print_r(va_list r)
 int i, count =0;
 char *str = va_arg(r, char *);
 if (str == NULL)
-str = "(null)"
+str = "(null)";
 for (i = 0; srt[i]; i++)
 ;
 for (i -= 1; str[i]; i--)
