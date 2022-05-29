@@ -60,7 +60,7 @@ return (count);
  */
 int print_S(va_list S)
 {
-unsign int i;
+unsigned int i;
 int count = 0;
 char *str = va_arg(S, char*);
 if (str == NULL)
