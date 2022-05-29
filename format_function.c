@@ -20,7 +20,8 @@ return (1);
  */
 int print_s(va_list s)
 int count;
-char str[] = va_arg(s, char *);
+char *str;
+str = va_arg(s, char *);
 if (str == NULL)
 str = "(null)";
 for (count = 0; str[count]; count++)
