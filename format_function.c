@@ -20,7 +20,8 @@ return (1);
  */
 int print_s(va_list s)
 int count;
-char *str = va_arg(s, char *);
+char *str;
+str = va_arg(s, char *);
 if (str == NULL)
 str = "(null)";
 for (count = 0; str[count]; count++)
@@ -58,7 +59,8 @@ return (count);
 int print_S(va_list S)
 unsign int i;
 int count = 0;
-char *str = va_arg(S, char*);
+char *str;
+str = va_arg(S, char*);
 if (str == NULL)
 str = "(null)"
 for (i = 0; str[i]; i++)
@@ -87,7 +89,8 @@ return (count);
 int print_r(va_list r)
 {
 int i, count =0;
-char *str = va_arg(r, char *);
+char *str;
+str = va_arg(r, char *);
 if (str == NULL)
 str = "(null)"
 for (i = 0; srt[i]; i++)
