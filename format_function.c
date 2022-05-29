@@ -94,11 +94,11 @@ int i, count =0;
 char *str = va_arg(r, char *);
 if (str == NULL)
 str = "(null)";
-for (i = 0; srt[i]; i++)
+for (i = 0; str[i]; i++)
 ;
 for (i -= 1; str[i]; i--)
 {
-_putchat(str[i]);
+_putchar(str[i]);
 count++;
 }
 return (count);
