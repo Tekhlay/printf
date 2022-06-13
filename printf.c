@@ -1,5 +1,5 @@
 #include "main.h"
-#include <stdalib.h>
+#include <stdlib.h>
 #include <stdarg.h>
 /**
  *modulator -pointer fun that choice the spacific format to va_list args

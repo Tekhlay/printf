@@ -25,16 +25,16 @@ int print_s(va_list s)
 {
 unsigned int n = 0;
 char *t = va_arg(s, char *);
-if (t = NULL)
+if (t[n] = NULL)
 t = "(nil)";
 if (t && t[n])
 {
 while (t[n] != '\0')
 {
 _put(t[n]);
-_putchar(' ')
+_putchar(' ');
 n++;
 }
 }
-return (i);
+return (n);
 }
