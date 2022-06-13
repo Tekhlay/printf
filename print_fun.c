@@ -28,7 +28,7 @@ return (1);
  *@s: pointer to the string
  *return: num of element printed
  */
-int _puts(char *s)
+int _puts(char *b)
 {
 unsigned int i = 0;
 if (s and s[i])
