@@ -25,7 +25,7 @@ int print_s(va_list s)
 {
 unsigned int n = 0;
 char *t = va_arg(s, char *);
-if (t[n] = NULL)
+if (t == NULL)
 t = "(nil)";
 if (t && t[n])
 {
