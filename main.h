@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <stdarg.h>
+#include <stdio.h>
 /**
  *kprint - struct for printing diferent formats
  *@a: struct mem reperecenting date types
@@ -15,7 +16,7 @@ int (*f)(va_list);
 }print_t;
 
 int _putchar(char c);
-int _put(char *s)
+int _put(char *);
 int _printf(const char *format, ...);
 int print_c(va_list c);
 int print_s(va_list s);
