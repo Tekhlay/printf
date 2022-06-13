@@ -26,7 +26,7 @@ int print_s(va_list s)
 unsigned int n = 0;
 char *t = va_arg(s, char *);
 if (t = NULL)
-t = "(nil)"
+t = "(nil)";
 if (t && t[n])
 {
 while (t[n] != '\0')
